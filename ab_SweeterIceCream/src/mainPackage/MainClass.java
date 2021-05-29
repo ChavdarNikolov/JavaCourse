@@ -8,7 +8,7 @@ public class MainClass {
 		Console.log("Number of iceCreams per shop: " + deliveredIceCreams(numberOfIceCreams));
 		int iceCreamsCreatedYesterday = Console.logInt("Enter a number of iceCreams \n"
 													 + "created yesterday");
-		Console.log(isGood(numberOfIceCreams, iceCreamsCreatedYesterday));
+		Console.log(Good(numberOfIceCreams, iceCreamsCreatedYesterday));
 		Console.log("Min ice Cream: " + minIceCreamCreated(numberOfIceCreams));
 	}
 	
@@ -16,7 +16,7 @@ public class MainClass {
 		return numberOfIceCreams / 10;
 	}
 	
-	public static String isGood(int today, int yesterday) {
+	public static String Good(int today, int yesterday) {
 		return (today > yesterday) ? "Good job" : "Low capacity"; 
 	}
 	
