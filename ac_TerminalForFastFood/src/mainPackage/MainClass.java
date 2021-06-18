@@ -3,14 +3,21 @@ package mainPackage;
 import java.util.Scanner;
 
 public class MainClass {
-
+	
+	private static final int UPPER_BOUND = 1_000_000;
+	private static final int LOW_BOUND = 99;
+	private static final int MIDDLE_BOUND = 99_999;
+	private static final int INDEX_OFFSET = 10;
+	private static final int ZERO_INIT = 0;
+	private static final int ZERO_COMPARISON = 0;
+	
 	public static void main(String[] args) {
 		int wallet = 25;
-		int price = 0;//BGN
+		int price = ZERO_INIT;//BGN
 		int	idNumber = input("Enter an id number: ");
-		boolean isEarlyAdopter = 99 < idNumber && 99_999 > idNumber;
-		boolean isNormal = 99_999 < idNumber && 1_000_000 > idNumber;
-		boolean isLagger = !isEarlyAdopter && !isNormal && 99 < idNumber;
+		boolean isEarlyAdopter = LOW_BOUND < idNumber && MIDDLE_BOUND > idNumber;
+		boolean isNormal = MIDDLE_BOUND < idNumber && UPPER_BOUND > idNumber;
+		boolean isLagger = !isEarlyAdopter && !isNormal && LOW_BOUND < idNumber;
 		boolean isVip = isVip(idNumber);
 		boolean isSecondMealAvailable = isSecondMealAvailable(idNumber);
 		String clientVip = logVip(isVip);
@@ -23,7 +30,7 @@ public class MainClass {
 		int finalPrice = menuManagerLogic(menuOptionIndex, price);
 		int finalWallet = wallet(finalPrice, wallet);
 		
-		if(finalWallet <= 0) {
+		if(finalWallet <= ZERO_COMPARISON) {
 			log("You can't make a purchase; pick again");
 			menuManagerLogic(menuOptionIndex, price);
 		}
@@ -50,7 +57,7 @@ public class MainClass {
 	}
 	
 	public static boolean isVip(int idNumber) {
-		return idNumber % 2 == 0;
+		return idNumber % 2 == ZERO_COMPARISON;
 	}
 	
 //	public static boolean isNotVip(int idNumber) {
@@ -69,7 +76,7 @@ public class MainClass {
 	}
 	
 	public static boolean isSecondMealAvailable(int idNumber) {
-		return (idNumber / 10) % 10 > 3;
+		return (idNumber / INDEX_OFFSET) % INDEX_OFFSET > 3;
 	}
 	
 	public static int menu(int menuOptionIndex) {	
@@ -88,10 +95,10 @@ public class MainClass {
 	}
 	
 	public static int menuManagerLogic(int menuOptionIndex, int price) {
-		int indexOfPrice = 0;
-		int priceStuff = 0;
+		int indexOfPrice = ZERO_INIT;
+		int priceStuff = ZERO_INIT;
 		menuList();
-		if(menuOptionIndex == 0) { 
+		if(menuOptionIndex == ZERO_COMPARISON) { 
 			return price;
 		} else {
 			price += indexOfPrice = menu(menuOptionIndex);
